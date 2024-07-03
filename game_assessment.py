@@ -22,7 +22,7 @@ def print_query(view_name:str):
     print(tabulate(results,headings))
     db.close()
 menu_choice =''
-while menu_choice != 'z':
+while menu_choice != 'Z':
     menu_choice = input('Welcome to the top games database\n\n'
                         'Type the letter for the information you want:\n'
                         'A: All games and their genre\n'
@@ -39,25 +39,27 @@ while menu_choice != 'z':
                         'Z: Exit\n\nType option here: ')
     menu_choice = menu_choice.upper()
     if menu_choice == 'A': 
-        print('all games and genres')
-    if menu_choice == 'B': 
-        print('all games made after 2000 order by descending order')
-    if menu_choice == 'C': 
-        print('all games with Action-adventure genre descending by year')
-    if menu_choice == 'D': 
-        print('all games with adventure genre')
-    if menu_choice == 'E': 
-        print('all games with strategy genre')
-    if menu_choice == 'F': 
-        print('every game')
-    if menu_choice == 'G': 
-        print('game, publisher, genre')
-    if menu_choice == 'H': 
-        print('games and publishers')
-    if menu_choice == 'I': 
-        print('games where publisher is nintendo')
-    if menu_choice == 'J': 
-        print('games where the publisher is mojand or bandai')
-    if menu_choice == 'K': 
-        print('games and year')
-    
+        print_query('all games and genres')
+    elif menu_choice == 'B': 
+        print_query('all games made after 2000 order by descending order')
+    elif menu_choice == 'C': 
+        print_query('all games with Action-adventure genre descending by year')
+    elif menu_choice == 'D': 
+        print_query('all games with adventure genre')
+    elif menu_choice == 'E': 
+        print_query('all games with strategy genre')
+    elif menu_choice == 'F': 
+        print_query('every game')
+    elif menu_choice == 'G': 
+        print_query('game, publisher, genre')
+    elif menu_choice == 'H': 
+        print_query('games and publishers')
+    elif menu_choice == 'I': 
+        print_query('games where publisher is nintendo')
+    elif menu_choice == 'J': 
+        print_query('games where the publisher is mojand or bandai')
+    elif menu_choice == 'K': 
+        print_query('games and year')
+    elif menu_choice == 'x':
+
+
