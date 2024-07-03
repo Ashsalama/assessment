@@ -5,6 +5,21 @@ from tabulate import tabulate
 # This is the filename of the database to be used
 DB_NAME = 'TOP100GAMES.ASSESSMENT.db'
 
+TABLES = ("games "
+           "LEFT JOIN publisher ON games.publisher_ID = publisher.publisher_ID "
+           "LEFT JOIN platform ON games.platform_ID = platform.platform_ID ")
+
+def print_parameter_query(fields:str, where:str, parameter):
+    """ Prints the results for a parameter query in tabular form. """
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
+    sql = ("SELECT " + fields + " FROM " + TABLES + " WHERE " + where)
+    cursor.execute(sql,(parameter,))
+    results = cursor.fetchall()
+    print(tabulate(results,fields.split(",")))
+    db.close()  
+
+
 def print_query(view_name:str):
     ''' Prints the specified view from the database in a table '''
     # Set up the connection to the database
@@ -36,6 +51,7 @@ while menu_choice != 'Z':
                         'I: All games where publisher is Nintendo\n'
                         'J: All games where publisher is Mojang or Bandai\n'
                         'K: All games and year\n'
+                        'X: Choose the game you would like to see\n'
                         'Z: Exit\n\nType option here: ')
     menu_choice = menu_choice.upper()
     if menu_choice == 'A': 
@@ -62,27 +78,7 @@ while menu_choice != 'Z':
         print_query('games and year')
     elif menu_choice == 'x':
        make = input('Which games would you like to see: ')
-       print_parameter_query("publisher, genre, platform", "game = ? ORDER BY genre DESC", games)
-
-# Import the libraries to connect to the database and present the information in tables
-import sqlite3
-from tabulate import tabulate
-
-DB_NAME = 'TOP100GAMES.ASSESSMENT'
-# This is the SQL to connect to all the tables in the database
-TABLES = ("games "
-           "LEFT JOIN publisher ON games.publisher_ID = publisher.publisher_ID "
-           "LEFT JOIN platform ON games.platform_ID = platform.platform_ID ")
-
-def print_parameter_query(fields:str, where:str, parameter):
-    """ Prints the results for a parameter query in tabular form. """
-    db = sqlite3.connect(DB_NAME)
-    cursor = db.cursor()
-    sql = ("SELECT " + fields + " FROM " + TABLES + " WHERE " + where)
-    cursor.execute(sql,(parameter,))
-    results = cursor.fetchall()
-    print(tabulate(results,fields.split(",")))
-    db.close()  
+       print_parameter_query("publisher, genre, platform", "game = ? ORDER BY genre DESC", game)
 
 
 
