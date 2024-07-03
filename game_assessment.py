@@ -37,9 +37,9 @@ def print_query(view_name:str):
     db.close()
 menu_choice =''
 while menu_choice != 'Z':
-    menu_choice = input('Welcome to the top games database\n\n'
+    menu_choice = input('\nWelcome to the top games database\n\n'
                         'Type the letter for the information you want:\n'
-                        'A: All games and their genre\n'
+                        '\nA: All games and their genre\n'
                         'B: All games made after the year 2000\n'
                         'C: All games with action-adventure genre\n'
                         'D: All games with adventure genre\n'
@@ -50,8 +50,10 @@ while menu_choice != 'Z':
                         'I: All games where publisher is Nintendo\n'
                         'J: All games where publisher is Mojang or Bandai\n'
                         'K: All games and year\n'
+                        'L: All games with the names only\n'
                         'X: Choose the game you would like to see\n'
                         'Z: Exit\n\nType option here: ')
+    print('\n')
     menu_choice = menu_choice.upper()
     if menu_choice == 'A': 
         print_query('all games and genres')
@@ -76,7 +78,10 @@ while menu_choice != 'Z':
     elif menu_choice == 'K': 
         print_query('games and year')
     elif menu_choice == 'X':
+       print_query('all games only')
+       print('\n')
        game = input('Which games would you like to see: ')
+       print('\n')
        print_parameter_query("game, genre, publisher, platform, year", "game = ? ORDER BY game DESC",game)
 
 
