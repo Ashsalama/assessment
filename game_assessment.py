@@ -6,8 +6,8 @@ from tabulate import tabulate
 DB_NAME = 'TOP100GAMES.ASSESSMENT.db'
 
 TABLES = ("games "
-           "LEFT JOIN publisher ON games.publisher_ID = publisher.publisher_ID "
-           "LEFT JOIN platform ON games.platform_ID = platform.platform_ID ")
+           "Left join publisher_ID on games.publisher_ID = publisher_ID .publisher_ID "
+           "Left join platform_ID on games.platform_ID = platform_ID .platform_ID ")
 
 def print_parameter_query(fields:str, where:str, parameter):
     """ Prints the results for a parameter query in tabular form. """
@@ -18,7 +18,6 @@ def print_parameter_query(fields:str, where:str, parameter):
     results = cursor.fetchall()
     print(tabulate(results,fields.split(",")))
     db.close()  
-
 
 def print_query(view_name:str):
     ''' Prints the specified view from the database in a table '''
@@ -76,10 +75,9 @@ while menu_choice != 'Z':
         print_query('games where the publisher is mojand or bandai')
     elif menu_choice == 'K': 
         print_query('games and year')
-    elif menu_choice == 'x':
-       make = input('Which games would you like to see: ')
-       print_parameter_query("publisher, genre, platform", "game = ? ORDER BY genre DESC", game)
-
+    elif menu_choice == 'X':
+       game = input('Which games would you like to see: ')
+       print_parameter_query("game, genre, year", "game = ? ORDER BY game DESC",game)
 
 
 
