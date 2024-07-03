@@ -61,5 +61,29 @@ while menu_choice != 'Z':
     elif menu_choice == 'K': 
         print_query('games and year')
     elif menu_choice == 'x':
+       make = input('Which games would you like to see: ')
+       print_parameter_query("publisher, genre, platform", "game = ? ORDER BY genre DESC", games)
+
+# Import the libraries to connect to the database and present the information in tables
+import sqlite3
+from tabulate import tabulate
+
+DB_NAME = 'TOP100GAMES.ASSESSMENT'
+# This is the SQL to connect to all the tables in the database
+TABLES = ("games "
+           "LEFT JOIN publisher ON games.publisher_ID = publisher.publisher_ID "
+           "LEFT JOIN platform ON games.platform_ID = platform.platform_ID ")
+
+def print_parameter_query(fields:str, where:str, parameter):
+    """ Prints the results for a parameter query in tabular form. """
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
+    sql = ("SELECT " + fields + " FROM " + TABLES + " WHERE " + where)
+    cursor.execute(sql,(parameter,))
+    results = cursor.fetchall()
+    print(tabulate(results,fields.split(",")))
+    db.close()  
+
+
 
 
