@@ -77,7 +77,7 @@ while menu_choice != 'Z':
         print_query('games and year')
     elif menu_choice == 'X':
        game = input('Which games would you like to see: ')
-       print_parameter_query("game, genre, year", "game = ? ORDER BY game DESC",game)
+       print_parameter_query("game, genre, publisher, platform, year", "game = ? ORDER BY game DESC",game)
 
 
 
