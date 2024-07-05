@@ -37,7 +37,7 @@ def print_query(view_name:str):
     db.close()
 menu_choice =''
 while menu_choice != 'Z':
-    menu_choice = input('\nWelcome to the top games database\n\n'
+    menu_choice = input('\nHello and welcome to the top games database\n\n'
                         'Type the letter for the information you want:\n'
                         '\nA: All games and their genre\n'
                         'B: All games made after the year 2000\n'
